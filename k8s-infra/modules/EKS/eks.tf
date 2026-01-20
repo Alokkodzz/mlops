@@ -28,6 +28,10 @@ resource "aws_eks_cluster" "mlops_eks_cluster" {
   role_arn = aws_iam_role.EKS_cluster_role.arn
   version  = var.cluster_version
 
+  access_config {
+    authentication_mode = "API_AND_CONFIG_MAP"
+  }
+
   vpc_config {
     subnet_ids = var.subnet_ids
   }
@@ -82,4 +86,21 @@ resource "aws_eks_node_group" "mlops_eks_nodegroup" {
   depends_on = [
     aws_iam_role_policy_attachment.EKS_AmazonEKSWorkerNodePolicy,
   ]
+}
+
+resource "aws_eks_access_entry" "ec2_access" {
+  cluster_name  = aws_eks_cluster.mlops_eks_cluster.name
+  principal_arn = var.ec2_role_arn
+  type          = "STANDARD"
+}
+
+resource "aws_eks_access_policy_association" "ec2_admin" {
+  cluster_name  = aws_eks_cluster.mlops_eks_cluster.name
+  principal_arn = var.ec2_role_arn
+
+  policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+
+  access_scope {
+    type = "cluster"
+  }
 }

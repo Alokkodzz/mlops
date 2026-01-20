@@ -15,8 +15,6 @@ provider "aws"{
 
 module "vpc" {
   source = "./modules/VPC"
-  subnet_ids = module.vpc.public_subnet
-  subnet_id = local.subnet_id
   availability_zone = local.VPC_availability_zone
 }
 
@@ -24,6 +22,7 @@ module "eks" {
   source = "./modules/EKS"
   subnet_ids = module.vpc.Private_subnet
   node_groups = var.node_groups
+   ec2_role_arn = module.ec2.EC2_role
   cluster_version = var.cluster_version
 }
 

@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: Prediction-svc
+  name: prediction-svc       
   namespace: mlops
 spec:
   selector:
-    app: Prediction
-    kubernetes.io/name: Prediction
+    app: prediction      
+    kubernetes.io/name: prediction
     kubernetes.io/part-of: mlops
   type: NodePort
   ports:

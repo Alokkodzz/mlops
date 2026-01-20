@@ -13,10 +13,10 @@ spec:
     - host: prediction.com
       http:
         paths:
-          - path: "/"
+          - path: "/predict"
             pathType: Prefix
             backend:
               service:
-                name: Prediction-svc
+                name: prediction-svc
                 port:
                   number: 80

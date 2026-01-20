@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Prediction
+  name: prediction
   namespace: mlops
   labels:
-    app: Prediction
+    app: prediction
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: Prediction
+      app: prediction
   template:
     metadata:
       labels:
-        app: Prediction
-        kubernetes.io/name: Prediction
-        kubernetes.io/part-of: mlops 
+        app: prediction
+        kubernetes.io/name: prediction
+        kubernetes.io/part-of: mlops
     spec:
       containers:
-      - name: Prediction-container
+      - name: prediction-container
         image: alokkodzz/mlops:v1
-        imagepullPolicy: IfNotPresent
+        imagePullPolicy: Always 
         ports:
         - containerPort: 6000

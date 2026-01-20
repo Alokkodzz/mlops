@@ -1,8 +1,3 @@
-variable "subnet_id" {
-    description = "Public subnet ID for EU2 Instance"
-    type = string
-}
-
 variable "private_subnet" {
   description = "CIDR block for Private subnet"
   type = list(string)
@@ -29,9 +24,4 @@ variable "availability_zone" {
     type = list(string)
 }
 
-variable "subnet_ids" {
-    description = "Private subnet id's"
-    type = list(string)
-  
-}
 

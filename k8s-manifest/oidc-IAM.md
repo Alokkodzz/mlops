@@ -2,6 +2,7 @@
 
 ```
 export cluster_name=<CLUSTER-NAME>
+export cluster_name=mlops-eks-cluster
 ```
 
 ```
@@ -17,5 +18,5 @@ aws iam list-open-id-connect-providers | grep $oidc_id | cut -d "/" -f4
 If not, run the below command
 
 ```
-eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
+eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster $cluster_name --approve
 ```

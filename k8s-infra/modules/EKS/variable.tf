@@ -23,3 +23,7 @@ variable "cluster_version" {
     type = string
   
 }
+
+variable "ec2_role_arn" {
+  type = string
+}
